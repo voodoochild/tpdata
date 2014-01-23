@@ -38,15 +38,15 @@ _.forEach(itemsJSON.items, function(item) {
   // Filter out bad data
   if (!item.buy || !item.sell || !item.demand || !item.supply) { return; }
 
-  // Supply and demand must be over 1000
-  if (item.demand < 1000 || item.supply < 1000) { return; }
+  // Supply and demand must be over 500
+  if (item.demand < 500 || item.supply < 500) { return; }
 
-  // Demand must be at least 200% of supply
-  if (item.demand < item.supply * 2) { return; }
+  // Demand must be at least 150% of supply
+  if (item.demand < item.supply * 1.5) { return; }
 
-  // Spread must be at least 1 silver
+  // Spread must be at least 5 silver
   item.spread = Math.floor((item.sell * 0.85) - item.buy);
-  if (item.spread < 100) { return; }
+  if (item.spread < 500) { return; }
 
   // Profit must be at least 50%
   item.profit = Math.floor((item.spread / item.buy) * 100);
@@ -60,5 +60,4 @@ _.forEach(itemsJSON.items, function(item) {
   profitableItems.push(item);
 });
 
-console.log(profitableItems.length+' of '+itemsJSON.items.length+' items match the criteria');
-console.log(profitableItems.slice(0,10));
+process.stdout.write(JSON.stringify(profitableItems));
