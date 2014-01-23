@@ -1,0 +1,8 @@
+{
+  "name": "tpdata",
+  "version": "0.1.0",
+  "devDependencies": {},
+  "dependencies": {
+    "lodash": "~2.4.1"
+  }
+}
